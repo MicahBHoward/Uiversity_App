@@ -14,7 +14,9 @@
           <p><%= course.description %></p>
         </div>
         <div class="card-action">
-          <a href="#" class="pink-text text-lighten-4">Enroll</a>
+          <% if logged_in? && !(current_user.courses.include?(course)) %>
+          <%= link_to "Enroll", course_enroll_path(course_id: course.id), method: :post, class: "pink-text text-lighten-4" %>
+          <% end %>
           <a href="#" class="pink-text text-lighten-4">Info</a>
         </div>
       </div>
